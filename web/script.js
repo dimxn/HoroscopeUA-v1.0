@@ -1,9 +1,9 @@
 const form = document.querySelector(".form");
 
-
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+    document.querySelector(".horoscope").innerHTML = '<div class="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div><p>Шукаю гороскоп</p></div>';
+    let load = document.querySelector('.loading');
     const img = {
         'Діва': 'https://cdn-icons-png.flaticon.com/512/1994/1994953.png',
         'Козеріг': 'https://cdn-icons-png.flaticon.com/512/3184/3184956.png',
@@ -33,9 +33,9 @@ form.addEventListener('submit', async (e) => {
     }
     let day = document.getElementById('day').value,
         month = document.getElementById('month').value;
-    
+
     if ((month == 1) && (day <= 20) || (month == 12) && (day >= 22)) {
-        document.querySelector(".horoscope").innerHTML = displayHoroscope('Козеріг', eel.horoscope(10), img['Козеріг']);
+        document.querySelector(".horoscope").innerHTML = displayHoroscope('Козеріг', await eel.horoscope(10)(), img['Козеріг']);
     } else if ((month == 1) || (month == 2) && (day <= 19)) {
         document.querySelector(".horoscope").innerHTML = displayHoroscope('Водолій', await eel.horoscope(11)(), img['Водолій']);
     } else if ((month == 2) || (month == 3) && (day <= 20)) {
@@ -50,8 +50,8 @@ form.addEventListener('submit', async (e) => {
         document.querySelector(".horoscope").innerHTML = displayHoroscope('Рак', await eel.horoscope(4)(), img['Рак']);
     } else if ((month == 7) || (month == 8) && (day <= 23)) {
         document.querySelector(".horoscope").innerHTML = displayHoroscope('Лев', await eel.horoscope(5)(), img['Лев']);
-    } else if ((month == 8) || (month == 9) && (day <= 23)) { 
-       document.querySelector(".horoscope").innerHTML = displayHoroscope('Діва', await eel.horoscope(6)(), img['Діва']);
+    } else if ((month == 8) || (month == 9) && (day <= 23)) {
+        document.querySelector(".horoscope").innerHTML = displayHoroscope('Діва', await eel.horoscope(6)(), img['Діва']);
     } else if ((month == 9) || (month == 10) && (day <= 23)) {
         document.querySelector(".horoscope").innerHTML = displayHoroscope('Терези', await eel.horoscope(7)(), img['Терези']);
     } else if ((month == 10) || (month == 11) && (day <= 22)) {
@@ -62,7 +62,11 @@ form.addEventListener('submit', async (e) => {
         document.querySelector(".horoscope").innerHTML = "<h1 style=\"color: red;\">Помилка: Введіть вірні данні</h1>";
     }
 
-
+    load.classList.add('hide')
+    setTimeout(() => {
+        load.remove()
+    }, 1200);
+});
     // fetch('functions.php', {
     //     method: 'post',
     //     body: body,
@@ -72,5 +76,4 @@ form.addEventListener('submit', async (e) => {
     // }).catch((error) => {
     //     document.querySelector(".horoscope").innerHTML = "Помилка якась не єбу яка" + error;
     // })
-    
-});
+
