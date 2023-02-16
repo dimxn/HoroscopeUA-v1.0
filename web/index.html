@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>HoroscopeUA</title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 </head>
 <body>
     <main class="card">
         <h1 class="title">HoroscopeUA</h1>
-        <form class="form" method="post">
-                <input class="form__input" type="text" name="numbers" placeholder="Введіть дату (00-00)">
+        <form action="" class="form" method="post">
+                <input id="day" class="form__input" type="text" name="numbers" placeholder="Введіть день">
+                <input id="month" class="form__input" type="text" name="numbers" placeholder="Введіть місяць">
             <button class="form__btn" name="Button" type="submit">Підтвердити</button>
         </form>
         <div class="horoscope">
@@ -27,7 +30,8 @@
 
         </div> -->
         </div>
-        <script src="js/script.js"></script>
+        <script src="script.js"></script>
+        <script type="text/javascript" src="/eel.js"></script>
     </main>
 </body>
 </html>
