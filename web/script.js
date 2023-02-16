@@ -32,6 +32,7 @@ form.addEventListener('submit', async (e) => {
             </div>
         </div>`;
     }
+
     let day = Number(document.getElementById('day').value),
         month = Number(document.getElementById('month').value);
 
