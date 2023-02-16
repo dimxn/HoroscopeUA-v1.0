@@ -4,6 +4,7 @@ form.addEventListener('submit', async (e) => {
     e.preventDefault();
     document.querySelector(".horoscope").innerHTML = '<div class="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div><p>Шукаю гороскоп</p></div>';
     let load = document.querySelector('.loading');
+
     const img = {
         'Діва': 'https://cdn-icons-png.flaticon.com/512/1994/1994953.png',
         'Козеріг': 'https://cdn-icons-png.flaticon.com/512/3184/3184956.png',
@@ -31,35 +32,48 @@ form.addEventListener('submit', async (e) => {
             </div>
         </div>`;
     }
-    let day = document.getElementById('day').value,
-        month = document.getElementById('month').value;
+    let day = Number(document.getElementById('day').value),
+        month = Number(document.getElementById('month').value);
 
-    if ((month == 1) && (day <= 20) || (month == 12) && (day >= 22)) {
-        document.querySelector(".horoscope").innerHTML = displayHoroscope('Козеріг', await eel.horoscope(10)(), img['Козеріг']);
-    } else if ((month == 1) || (month == 2) && (day <= 19)) {
-        document.querySelector(".horoscope").innerHTML = displayHoroscope('Водолій', await eel.horoscope(11)(), img['Водолій']);
-    } else if ((month == 2) || (month == 3) && (day <= 20)) {
-        document.querySelector(".horoscope").innerHTML = displayHoroscope('Риби', await eel.horoscope(12)(), img['Риби']);
-    } else if ((month == 3) || (month == 4) && (day <= 19)) {
-        document.querySelector(".horoscope").innerHTML = displayHoroscope('Овен', await eel.horoscope(1)(), img['Овен']);
-    } else if ((month == 4) || (month == 5) && (day <= 21)) {
-        document.querySelector(".horoscope").innerHTML = displayHoroscope('Телець', await eel.horoscope(2)(), img['Телець']);
-    } else if ((month == 5) || (month == 6) && (day <= 21)) {
-        document.querySelector(".horoscope").innerHTML = displayHoroscope('Близнюки', await eel.horoscope(3)(), img['Близнюки']);
-    } else if ((month == 6) || (month == 7) && (day <= 23)) {
-        document.querySelector(".horoscope").innerHTML = displayHoroscope('Рак', await eel.horoscope(4)(), img['Рак']);
-    } else if ((month == 7) || (month == 8) && (day <= 23)) {
-        document.querySelector(".horoscope").innerHTML = displayHoroscope('Лев', await eel.horoscope(5)(), img['Лев']);
-    } else if ((month == 8) || (month == 9) && (day <= 23)) {
-        document.querySelector(".horoscope").innerHTML = displayHoroscope('Діва', await eel.horoscope(6)(), img['Діва']);
-    } else if ((month == 9) || (month == 10) && (day <= 23)) {
-        document.querySelector(".horoscope").innerHTML = displayHoroscope('Терези', await eel.horoscope(7)(), img['Терези']);
-    } else if ((month == 10) || (month == 11) && (day <= 22)) {
-        document.querySelector(".horoscope").innerHTML = displayHoroscope('Скорпіон', await eel.horoscope(8)(), img['Скорпіон']);
-    } else if ((month == 11) || (month == 12) && (day <= 30)) {
-        document.querySelector(".horoscope").innerHTML = displayHoroscope('Стрілець', await eel.horoscope(9)(), img['Стрілець']);
-    } else if (day < 31 || month < 12) {
-        document.querySelector(".horoscope").innerHTML = "<h1 style=\"color: red;\">Помилка: Введіть вірні данні</h1>";
+    switch (month) {
+        case 1:
+            document.querySelector(".horoscope").innerHTML = day <= 19 ? displayHoroscope('Козеріг', await eel.horoscope(10)(), img['Козеріг']) : displayHoroscope('Водолій', await eel.horoscope(11)(), img['Водолій']);
+            break;
+        case 2:
+            document.querySelector(".horoscope").innerHTML = day <= 18 ? displayHoroscope('Водолій', await eel.horoscope(11)(), img['Водолій']) : displayHoroscope('Риби', await eel.horoscope(12)(), img['Риби']);
+            break;
+        case 3:
+            document.querySelector(".horoscope").innerHTML = day <= 20 ? displayHoroscope('Риби', await eel.horoscope(12)(), img['Риби']) : displayHoroscope('Овен', await eel.horoscope(1)(), img['Овен']);
+            break;
+        case 4:
+            document.querySelector(".horoscope").innerHTML = day <= 19 ? displayHoroscope('Овен', await eel.horoscope(1)(), img['Овен']) : displayHoroscope('Телець', await eel.horoscope(2)(), img['Телець']);
+            break;
+        case 5:
+            document.querySelector(".horoscope").innerHTML = day <= 20 ? displayHoroscope('Телець', await eel.horoscope(2)(), img['Телець']) : displayHoroscope('Близнюки', await eel.horoscope(3)(), img['Близнюки']);
+            break;
+        case 6:
+            document.querySelector(".horoscope").innerHTML = day <= 21 ? displayHoroscope('Близнюки', await eel.horoscope(3)(), img['Близнюки']) : displayHoroscope('Рак', await eel.horoscope(4)(), img['Рак']);
+            break;
+        case 7:
+            document.querySelector(".horoscope").innerHTML = day <= 22 ? displayHoroscope('Рак', await eel.horoscope(4)(), img['Рак']) : displayHoroscope('Лев', await eel.horoscope(5)(), img['Лев']);
+            break;
+        case 8:
+            document.querySelector(".horoscope").innerHTML = day <= 22 ? displayHoroscope('Лев', await eel.horoscope(5)(), img['Лев']) : displayHoroscope('Діва', await eel.horoscope(6)(), img['Діва']);
+            break;
+        case 9:
+            document.querySelector(".horoscope").innerHTML = day <= 22 ? displayHoroscope('Діва', await eel.horoscope(6)(), img['Діва']) : displayHoroscope('Терези', await eel.horoscope(7)(), img['Терези']);
+            break;
+        case 10:
+            document.querySelector(".horoscope").innerHTML = day <= 22 ? displayHoroscope('Терези', await eel.horoscope(7)(), img['Терези']) : displayHoroscope('Скорпіон', await eel.horoscope(8)(), img['Скорпіон']);
+            break;
+        case 11:
+            document.querySelector(".horoscope").innerHTML = day <= 21 ? displayHoroscope('Скорпіон', await eel.horoscope(8)(), img['Скорпіон']) : displayHoroscope('Стрілець', await eel.horoscope(9)(), img['Стрілець']);
+            break;
+        case 12:
+            document.querySelector(".horoscope").innerHTML = day <= 21 ? displayHoroscope('Стрілець', await eel.horoscope(9)(), img['Стрілець']) : displayHoroscope('Козеріг', await eel.horoscope(10)(), img['Козеріг']);
+            break;
+        default:
+            document.querySelector(".horoscope").innerHTML = "<h1 style=\"color: red;\">Помилка: Введіть вірні данні</h1>";
     }
 
     load.classList.add('hide')
@@ -67,13 +81,3 @@ form.addEventListener('submit', async (e) => {
         load.remove()
     }, 1200);
 });
-    // fetch('functions.php', {
-    //     method: 'post',
-    //     body: body,
-    // }).then((response) => {
-    //     // document.querySelector(".horoscope").innerHTML = response;
-    //     console.log(response);
-    // }).catch((error) => {
-    //     document.querySelector(".horoscope").innerHTML = "Помилка якась не єбу яка" + error;
-    // })
-
