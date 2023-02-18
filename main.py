@@ -20,5 +20,4 @@ def horoscope(number):
     return [results.string for results in result]
 
 
-# print(horoscope(2))
 eel.start('index.html')
